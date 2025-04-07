@@ -9,11 +9,27 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'GreenSteps',
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        appBar: AppBar(
+          title: const Text('GreenSteps'),
+          centerTitle: true,
         ),
+        body: ListView(
+          padding: const EdgeInsets.all(15),
+          children: const [
+            Text('Eco Logs', style: TextStyle(fontSize: 32, color: Colors.green, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add_a_photo_sharp
+        ),
+        onPressed: () {},
+      )
       ),
     );
   }
