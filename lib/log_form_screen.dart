@@ -19,6 +19,16 @@ class _LogFormScreenState extends State<LogFormScreen>
   final ImagePicker _picker = ImagePicker();
   File? _image;
 
+  Future<void> _takePhoto() async {
+    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    if (photo != null)
+    {
+      setState(() {
+        _image = File(photo.path);
+      });
+    }
+  }
+
 
 @override
 Widget build(BuildContext context) {
@@ -37,12 +47,12 @@ Widget build(BuildContext context) {
             child: Column(
               children: [
                 _image == null ?
-                ElevatedButton(onPressed: (){}, child: const Text('Take Photo'))
+                ElevatedButton(onPressed: _takePhoto, child: const Text('Take Photo'))
                 : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.file(_image!, height: 250, width: 250),
-                    ElevatedButton(onPressed: (){}, child: const Text('Retake Photo'))
+                    ElevatedButton(onPressed: _takePhoto, child: const Text('Retake Photo'))
                   ],
                 ),
                 TextFormField(
